@@ -1,0 +1,8 @@
+# TRACE - demo path requires NONE of these (pure stdlib).
+# Uncomment to run against REAL artifacts on the SIFT Workstation.
+
+# mcp                # MCP server SDK, to expose tools to Claude Code / Cline
+# regipy             # registry / AmCache parsing
+# python-evtx        # Windows EVTX event log parsing
+# analyzeMFT         # $MFT timeline extraction
+# prefetch           # Windows prefetch parsing

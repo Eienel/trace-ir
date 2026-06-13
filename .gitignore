@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+sample_data/
+logs/*.jsonl
+!logs/.gitkeep
+.DS_Store
+real_security.evtx
+*.evtx
