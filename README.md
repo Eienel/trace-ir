@@ -67,26 +67,6 @@ the real libraries (already stubbed and commented):
 The tool contract, citation model, verifier, and benchmark stay identical. Only the
 parse functions change. This is deliberate: the architecture is the contribution.
 
-## Pushing this to GitHub
-
-The hackathon requires a public repo with an MIT/Apache license (included).
-
-```bash
-cd "C:\Users\HP\Desktop\findevil hac"
-
-git init
-git add .
-git commit -m "TRACE: typed read-only citation engine for Protocol SIFT"
-
-# Create an EMPTY repo on github.com first (no README), then:
-git remote add origin https://github.com/<your-username>/trace-ir.git
-git branch -M main
-git push -u origin main
-```
-
-If `git` asks for credentials, use a GitHub Personal Access Token as the password
-(github.com → Settings → Developer settings → Personal access tokens).
-
 ## Repo layout
 
 ```
@@ -94,20 +74,9 @@ server/        Typed read-only MCP server + parsers + citation model
 agent/         Verifier and self-correcting loop (the autonomy layer)
 benchmark/     Ground-truth scoring harness + synthetic data generator
 sample_data/   Generated case artifacts (after step 1)
-logs/          Structured execution logs (deliverable #8)
-docs/          Architecture, accuracy report, Devpost writeup, diagram
+logs/          Structured execution logs with timestamps + token usage
+docs/          Architecture, accuracy report, dataset notes, diagram
 ```
-
-## Submission checklist (the 8 required components)
-
-- [x] Code repository (this repo, MIT licensed)
-- [ ] Demo video (5 min) - record after running steps 1-4
-- [x] Architecture diagram - `docs/architecture_diagram.svg`
-- [x] Written project description - `docs/DEVPOST_WRITEUP.md`
-- [x] Dataset documentation - `docs/DATASET.md`
-- [x] Accuracy report - `docs/ACCURACY_REPORT.md` (auto-filled by benchmark)
-- [x] Try-it-out instructions - this README
-- [x] Agent execution logs - `logs/execution_log.jsonl`
 
 ## License
 
