@@ -108,8 +108,7 @@ On `case01` the real model produced **8 findings**. With the verifier **off**, a
 passed through as fact (including a `[HIGH]` "malicious activity detected" with no
 evidence). With TRACE **on**, all 8 were caught: 3 fabricated citations (real text
 attributed to the wrong line number) and 5 uncited claims. Not scripted - a real
-model, real hallucinations, caught against the raw bytes. See `docs/DEMO_SCRIPT.md`
-for the walkthrough.
+model, real hallucinations, caught against the raw bytes.
 
 > On Windows PowerShell, set the env vars with `$env:LLM_API_BASE = "..."` etc.
 
