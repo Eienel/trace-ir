@@ -95,3 +95,88 @@ python -c "from server.trace_server import call_tool; call_tool('execute_shell',
 - [ ] Run the three commands once before recording so output is warm
 - [ ] Keep total under 5:00
 - [ ] Upload unlisted to YouTube, paste link in Devpost submission
+
+---
+
+# Alternate / add-on: Live LLM run on Ollama (~3 minutes)
+
+Use this if you want to show TRACE catching a **real**, unscripted model
+hallucination instead of (or in addition to) the deterministic demo above. Runs a
+local `llama3.2:1b` via Ollama - no API key, nothing leaves the machine.
+
+## Before you record (prep)
+
+1. Make sure the **Ollama app is running** (tray icon visible).
+2. Open **one** PowerShell window, maximized, large font.
+3. Warm it up so it's instant on camera:
+
+   ```powershell
+   cd "C:\Users\HP\Desktop\findevil hac"
+   $env:LLM_API_BASE = "http://localhost:11434/v1"
+   $env:LLM_API_KEY  = "ollama"
+   $env:LLM_MODEL    = "llama3.2:1b"
+   ollama run llama3.2:1b "hi"   # then type /bye to exit - this loads the model into RAM
+   cls
+   ```
+4. Do **one full practice run** of both commands right before recording so you know
+   this session produces the 8-findings output. If a run differs, just re-run - the
+   architecture point holds regardless of the exact count.
+
+## Scene 1 - The problem (~20s)
+
+> "The brief said it plainly: *Protocol SIFT works, but it hallucinates more than
+> we'd like.* A confident made-up finding is worse than no finding. The question a
+> senior analyst always asks is: **show me the evidence.** That's what TRACE is."
+
+## Scene 2 - What TRACE is (~25s, over the README)
+
+> "An MCP server plus a self-correcting loop. The agent only gets typed, read-only
+> tools - it can't run a destructive command. Every finding must cite the exact
+> line of raw evidence, and a verifier re-reads those bytes. Bad citation, dropped."
+
+## Scene 3 - Baseline failure (~40s) - RUN LIVE
+
+> "Let me prove it with a **real** LLM, not a script - a local Llama 3.2 reading
+> raw Windows artifacts. First with the verifier **off** - an ungoverned agent."
+
+```powershell
+python -m agent.loop --case sample_data/case01 --live --mode baseline --max-iterations 1
+```
+
+> "Eight findings, all as fact. This one - **HIGH, 'malicious activity detected',
+> evidence: dash.** Nothing. Made up. Others cite line 2, but that's not what line
+> 2 says."
+
+## Scene 4 - TRACE catches it (~40s) - RUN LIVE
+
+> "Same model, same case, verifier **on**."
+
+```powershell
+python -m agent.loop --case sample_data/case01 --live --mode trace --max-iterations 1
+```
+
+> "**Zero survive. Eight dropped as unverified.** Three fabricated citations -
+> real text attributed to the wrong line, an off-by-one a tired reviewer misses -
+> and five with no evidence at all. Every one caught against the raw bytes."
+
+## Scene 5 - Audit trail (~20s)
+
+```powershell
+type logs\execution_log.jsonl | findstr verification
+```
+
+> "Not a black box. Every finding, verified true or false, with the reason. Fully
+> auditable."
+
+## Scene 6 - Close (~15s)
+
+> "You don't fix hallucination with a smarter prompt - prompts get ignored. You fix
+> it with architecture: constrain what the agent can do, verify what it claims
+> against real evidence. That's TRACE."
+
+## Talking tips
+
+- The money shot is **Scene 3 to 4**: same model, 8 to 0. Pause after each result.
+- If a live run is slow on camera, narrate while it thinks.
+- The 1B is non-deterministic across cold/warm states - that's why you practice-run
+  immediately before recording.

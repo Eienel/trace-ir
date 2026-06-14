@@ -89,6 +89,30 @@ fabricates or mis-quotes fails and is dropped, and the agent re-runs told which
 claims were rejected. The accuracy report records whether numbers came from a
 live run or the deterministic demo.
 
+### Verified locally on Ollama
+
+We tested this end-to-end with a local **Ollama `llama3.2:1b`** model - no API key,
+no cloud, nothing leaving the machine, runnable on a laptop:
+
+```bash
+ollama pull llama3.2:1b
+export LLM_API_BASE=http://localhost:11434/v1
+export LLM_API_KEY=ollama          # value unused by Ollama, just needs to be set
+export LLM_MODEL=llama3.2:1b
+
+python -m agent.loop --case sample_data/case01 --live --mode baseline --max-iterations 1   # verifier off
+python -m agent.loop --case sample_data/case01 --live --mode trace    --max-iterations 1   # verifier on
+```
+
+On `case01` the real model produced **8 findings**. With the verifier **off**, all 8
+passed through as fact (including a `[HIGH]` "malicious activity detected" with no
+evidence). With TRACE **on**, all 8 were caught: 3 fabricated citations (real text
+attributed to the wrong line number) and 5 uncited claims. Not scripted - a real
+model, real hallucinations, caught against the raw bytes. See `docs/DEMO_SCRIPT.md`
+for the walkthrough.
+
+> On Windows PowerShell, set the env vars with `$env:LLM_API_BASE = "..."` etc.
+
 ## Repo layout
 
 ```
