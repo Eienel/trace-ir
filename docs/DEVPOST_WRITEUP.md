@@ -37,6 +37,15 @@ in seconds. Evidence parsing lives behind a single read-only accessor
 bytes and compares them to the recorded `raw_line` - a fabricated or drifted
 citation fails. Everything is logged to JSONL with timestamps and token usage.
 
+To prove the verifier against *real* hallucinations rather than a scripted one, we
+added a provider-agnostic live agent (`--live`): a real LLM (Google Gemini, OpenAI,
+Anthropic, or any OpenAI-compatible endpoint - no SDK, stdlib `urllib` only) reads
+the raw artifact lines and writes findings with its own citations. The verifier
+then checks each citation against the real bytes, so anything the model fabricates
+or mis-quotes is caught and dropped, and the agent re-runs told exactly which
+claims were rejected. The same architecture and benchmark are used in both the
+deterministic demo and the live run; only the source of the findings changes.
+
 ## Challenges we ran into
 
 - **Distinguishing fabrication from judgment.** The verifier should remove made-up

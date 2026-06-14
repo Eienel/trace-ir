@@ -49,11 +49,11 @@ def _score(reported: List[Finding], gt: set) -> dict:
     }
 
 
-def run(case_dir: str) -> dict:
+def run(case_dir: str, live: bool = False) -> dict:
     gt = _load_ground_truth(case_dir)
 
-    base_hist = run_case(case_dir, max_iterations=1, mode="baseline")
-    trace_hist = run_case(case_dir, max_iterations=3, mode="trace")
+    base_hist = run_case(case_dir, max_iterations=1, mode="baseline", live=live)
+    trace_hist = run_case(case_dir, max_iterations=3, mode="trace", live=live)
 
     baseline = _score(base_hist[-1].reported, gt)
     trace = _score(trace_hist[-1].reported, gt)
@@ -63,6 +63,7 @@ def run(case_dir: str) -> dict:
         "baseline": baseline,
         "trace": trace,
         "trace_iterations": len(trace_hist),
+        "live": live,
     }
 
 
@@ -74,7 +75,12 @@ def _fmt_row(label: str, s: dict) -> str:
 def _write_report(res: dict) -> str:
     gt = res["ground_truth_count"]
     b, t = res["baseline"], res["trace"]
+    run_type = ("Live LLM agent (real model, citations verified against raw bytes)"
+                if res.get("live") else
+                "Deterministic demo (scripted over-reach, no API key needed)")
     md = f"""# TRACE - Accuracy Report
+
+Run type: **{run_type}**
 
 Case: `{res['case']}`  •  Ground-truth malicious findings: **{gt}**
 
@@ -127,9 +133,20 @@ python -m benchmark.run_benchmark --case sample_data/case01
 def main() -> None:
     ap = argparse.ArgumentParser(description="TRACE accuracy benchmark")
     ap.add_argument("--case", required=True)
+    ap.add_argument("--live", action="store_true",
+                    help="run against a real LLM provider instead of the demo")
     args = ap.parse_args()
 
-    res = run(args.case)
+    live = args.live
+    if live:
+        from agent.llm_agent import llm_available, provider_name
+        if not llm_available():
+            print("No LLM provider configured; running deterministic demo instead.\n")
+            live = False
+        else:
+            print(f"Live benchmark against: {provider_name()}\n")
+
+    res = run(args.case, live=live)
     report_path = _write_report(res)
 
     b, t = res["baseline"], res["trace"]

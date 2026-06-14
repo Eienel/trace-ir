@@ -67,6 +67,28 @@ the real libraries (already stubbed and commented):
 The tool contract, citation model, verifier, and benchmark stay identical. Only the
 parse functions change. This is deliberate: the architecture is the contribution.
 
+## Live LLM run (real, unscripted hallucination test)
+
+The deterministic demo uses a scripted over-reach so it runs with no API key. To
+prove the verifier catches *real* model hallucinations, run a live agent. TRACE is
+provider-agnostic and needs no SDK (stdlib `urllib` only) - set whichever key you
+have:
+
+```bash
+export GEMINI_API_KEY=...        # or OPENAI_API_KEY / ANTHROPIC_API_KEY
+#                                 # or LLM_API_KEY + LLM_API_BASE for any
+#                                 # OpenAI-compatible endpoint (Groq, Together, Ollama...)
+
+python -m agent.loop --case sample_data/case01 --live --max-iterations 3
+python -m benchmark.run_benchmark --case sample_data/case01 --live
+```
+
+In live mode a real model reads the raw artifact lines and writes findings with
+its own citations. The verifier re-reads each cited line: any claim the model
+fabricates or mis-quotes fails and is dropped, and the agent re-runs told which
+claims were rejected. The accuracy report records whether numbers came from a
+live run or the deterministic demo.
+
 ## Repo layout
 
 ```
