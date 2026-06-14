@@ -84,6 +84,18 @@ ignored. It's *architecture*: constrain what the agent can do, and verify what i
 claims against raw evidence. That's also exactly what the judging criteria reward
 (constraint implementation, audit trail, accuracy).
 
+## A note on our setup
+
+We built and tested TRACE on a laptop with 8GB of RAM, which is not enough to
+comfortably run the full SIFT Workstation VM alongside a model. Rather than treat
+that as a blocker, we made it a design constraint: TRACE runs in pure Python with
+zero dependencies for the demo path, and our live LLM test uses a local Ollama
+`llama3.2:1b` model small enough to run on the same machine, with no API key and
+no data leaving the device. The architecture is deliberately pluggable, so the
+exact same citation, verifier, loop, and benchmark code drops onto the full SIFT
+Workstation by swapping in `regipy` / `python-evtx` / `analyzeMFT` / prefetch. The
+constraint shaped the engineering; it did not limit the thesis.
+
 ## What's next
 
 Swap the demo parsers for `regipy` / `python-evtx` / `analyzeMFT` / prefetch and
