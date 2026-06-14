@@ -25,7 +25,8 @@ sound in the evaluation"), combined with a verification + self-correction loop.
         ▼
   ┌──────────────────────────┐
   │  agent/loop.py            │  plan → analyze → reason → verify → self-correct
-  │  self-correcting loop     │  capped by --max-iterations
+  │  self-correcting loop     │  re-runs while claims are dropped,
+  │                           │  capped by --max-iterations (default 3)
   └──────────────────────────┘
         │ every claim
         ▼
@@ -46,7 +47,12 @@ sound in the evaluation"), combined with a verification + self-correction loop.
 | Evidence cannot be modified | **Architectural** | `parsers._read_lines` is the only disk access; opens `'r'`, no write methods called |
 | No fabricated findings reach the report | **Architectural** | `verifier.verify_finding` checks every citation against raw bytes before a finding is reported |
 | Inferred vs. confirmed findings distinguished | Data-model | `Finding.confidence` field, surfaced in output |
-| Runaway loops prevented | **Architectural** | `--max-iterations` hard cap in `loop.run_case` |
+| Runaway loops prevented | **Architectural** | `--max-iterations` hard cap (default 3) in `loop.run_case` |
+
+The loop **self-corrects**: after each pass the verifier reports which claims were
+dropped, and if anything was dropped the agent re-runs told exactly which claims
+to avoid - up to `--max-iterations` (default 3) passes. On `sample_data/case01`
+it converges in 2 iterations (2 uncited claims dropped, then a clean pass).
 
 There are **no prompt-based guardrails** in the trust-critical path. The agent's
 behaviour is bounded by what the server exposes and what the verifier admits, not

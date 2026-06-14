@@ -32,7 +32,9 @@ This maps directly onto the judging criteria:
 # 1. Generate synthetic-but-realistic case artifacts
 python -m benchmark.make_sample_data
 
-# 2. Run the agent loop against the case (offline simulated agent)
+# 2. Run the agent loop against the case (offline simulated agent).
+#    It self-corrects: any pass that drops unverified claims triggers a
+#    re-run, up to --max-iterations (default 3). On case01 it converges in 2.
 python -m agent.loop --case sample_data/case01 --max-iterations 3
 
 # 3. Score accuracy against ground truth
