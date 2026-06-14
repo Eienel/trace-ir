@@ -9,3 +9,6 @@ logs/*.jsonl
 .DS_Store
 real_security.evtx
 *.evtx
+
+# Local-only demo notes, not for the public repo
+docs/DEMO_SCRIPT.md
