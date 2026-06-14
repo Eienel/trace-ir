@@ -120,6 +120,7 @@ agent/         Verifier and self-correcting loop (the autonomy layer)
 benchmark/     Ground-truth scoring harness + synthetic data generator
 sample_data/   Generated case artifacts (after step 1)
 logs/          Structured execution logs with timestamps + token usage
+               (see logs/sample_execution_log.jsonl for a committed example run)
 docs/          Architecture, accuracy report, dataset notes, diagram
 ```
 

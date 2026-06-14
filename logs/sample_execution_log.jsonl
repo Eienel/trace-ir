@@ -1,0 +1,71 @@
+{"ts": "2026-06-14T12:05:35", "event": "run_start", "case": "sample_data/case01", "mode": "trace", "live": false, "max_iterations": 3}
+{"ts": "2026-06-14T12:05:35", "event": "tool_call", "iteration": 0, "tool": "list_artifacts", "args": {"case_dir": "sample_data/case01"}, "n_findings": 5, "est_tokens": 98}
+{"ts": "2026-06-14T12:05:35", "event": "tool_call", "iteration": 0, "tool": "get_amcache", "args": {"path": "sample_data/case01\\amcache.txt"}, "n_findings": 2, "est_tokens": 91}
+{"ts": "2026-06-14T12:05:35", "event": "tool_call", "iteration": 0, "tool": "extract_mft_timeline", "args": {"path": "sample_data/case01\\mft.txt"}, "n_findings": 2, "est_tokens": 69}
+{"ts": "2026-06-14T12:05:35", "event": "tool_call", "iteration": 0, "tool": "analyze_prefetch", "args": {"path": "sample_data/case01\\prefetch.txt"}, "n_findings": 1, "est_tokens": 36}
+{"ts": "2026-06-14T12:05:35", "event": "tool_call", "iteration": 0, "tool": "parse_evtx_logons", "args": {"path": "sample_data/case01\\evtx_logons.txt"}, "n_findings": 2, "est_tokens": 61}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 0, "finding_id": "amcache:3", "verified": true, "reason": "citation matches raw evidence"}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 0, "finding_id": "amcache:5", "verified": true, "reason": "citation matches raw evidence"}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 0, "finding_id": "mft:2", "verified": true, "reason": "citation matches raw evidence"}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 0, "finding_id": "mft:3", "verified": true, "reason": "citation matches raw evidence"}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 0, "finding_id": "prefetch:2", "verified": true, "reason": "citation matches raw evidence"}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 0, "finding_id": "evtx:7", "verified": true, "reason": "citation matches raw evidence"}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 0, "finding_id": "evtx:bruteforce:203.0.113.45", "verified": true, "reason": "citation matches raw evidence"}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 0, "finding_id": "inferred:exfil", "verified": false, "reason": "no citation: unsupported claim"}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 0, "finding_id": "inferred:ransomware", "verified": false, "reason": "no citation: unsupported claim"}
+{"ts": "2026-06-14T12:05:35", "event": "iteration_summary", "iteration": 0, "reported": 7, "dropped": 2}
+{"ts": "2026-06-14T12:05:35", "event": "tool_call", "iteration": 1, "tool": "list_artifacts", "args": {"case_dir": "sample_data/case01"}, "n_findings": 5, "est_tokens": 98}
+{"ts": "2026-06-14T12:05:35", "event": "tool_call", "iteration": 1, "tool": "get_amcache", "args": {"path": "sample_data/case01\\amcache.txt"}, "n_findings": 2, "est_tokens": 91}
+{"ts": "2026-06-14T12:05:35", "event": "tool_call", "iteration": 1, "tool": "extract_mft_timeline", "args": {"path": "sample_data/case01\\mft.txt"}, "n_findings": 2, "est_tokens": 69}
+{"ts": "2026-06-14T12:05:35", "event": "tool_call", "iteration": 1, "tool": "analyze_prefetch", "args": {"path": "sample_data/case01\\prefetch.txt"}, "n_findings": 1, "est_tokens": 36}
+{"ts": "2026-06-14T12:05:35", "event": "tool_call", "iteration": 1, "tool": "parse_evtx_logons", "args": {"path": "sample_data/case01\\evtx_logons.txt"}, "n_findings": 2, "est_tokens": 61}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 1, "finding_id": "amcache:3", "verified": true, "reason": "citation matches raw evidence"}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 1, "finding_id": "amcache:5", "verified": true, "reason": "citation matches raw evidence"}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 1, "finding_id": "mft:2", "verified": true, "reason": "citation matches raw evidence"}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 1, "finding_id": "mft:3", "verified": true, "reason": "citation matches raw evidence"}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 1, "finding_id": "prefetch:2", "verified": true, "reason": "citation matches raw evidence"}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 1, "finding_id": "evtx:7", "verified": true, "reason": "citation matches raw evidence"}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 1, "finding_id": "evtx:bruteforce:203.0.113.45", "verified": true, "reason": "citation matches raw evidence"}
+{"ts": "2026-06-14T12:05:35", "event": "iteration_summary", "iteration": 1, "reported": 7, "dropped": 0}
+{"ts": "2026-06-14T12:05:35", "event": "converged", "iteration": 1}
+{"ts": "2026-06-14T12:05:35", "event": "run_end", "case": "sample_data/case01"}
+{"ts": "2026-06-14T12:05:35", "event": "run_start", "case": "sample_data/case01", "mode": "baseline", "live": false, "max_iterations": 1}
+{"ts": "2026-06-14T12:05:35", "event": "tool_call", "iteration": 0, "tool": "list_artifacts", "args": {"case_dir": "sample_data/case01"}, "n_findings": 5, "est_tokens": 98}
+{"ts": "2026-06-14T12:05:35", "event": "tool_call", "iteration": 0, "tool": "get_amcache", "args": {"path": "sample_data/case01\\amcache.txt"}, "n_findings": 2, "est_tokens": 91}
+{"ts": "2026-06-14T12:05:35", "event": "tool_call", "iteration": 0, "tool": "extract_mft_timeline", "args": {"path": "sample_data/case01\\mft.txt"}, "n_findings": 2, "est_tokens": 69}
+{"ts": "2026-06-14T12:05:35", "event": "tool_call", "iteration": 0, "tool": "analyze_prefetch", "args": {"path": "sample_data/case01\\prefetch.txt"}, "n_findings": 1, "est_tokens": 36}
+{"ts": "2026-06-14T12:05:35", "event": "tool_call", "iteration": 0, "tool": "parse_evtx_logons", "args": {"path": "sample_data/case01\\evtx_logons.txt"}, "n_findings": 2, "est_tokens": 61}
+{"ts": "2026-06-14T12:05:35", "event": "iteration_summary", "iteration": 0, "reported": 9, "dropped": 0}
+{"ts": "2026-06-14T12:05:35", "event": "converged", "iteration": 0}
+{"ts": "2026-06-14T12:05:35", "event": "run_end", "case": "sample_data/case01"}
+{"ts": "2026-06-14T12:05:35", "event": "run_start", "case": "sample_data/case01", "mode": "trace", "live": false, "max_iterations": 3}
+{"ts": "2026-06-14T12:05:35", "event": "tool_call", "iteration": 0, "tool": "list_artifacts", "args": {"case_dir": "sample_data/case01"}, "n_findings": 5, "est_tokens": 98}
+{"ts": "2026-06-14T12:05:35", "event": "tool_call", "iteration": 0, "tool": "get_amcache", "args": {"path": "sample_data/case01\\amcache.txt"}, "n_findings": 2, "est_tokens": 91}
+{"ts": "2026-06-14T12:05:35", "event": "tool_call", "iteration": 0, "tool": "extract_mft_timeline", "args": {"path": "sample_data/case01\\mft.txt"}, "n_findings": 2, "est_tokens": 69}
+{"ts": "2026-06-14T12:05:35", "event": "tool_call", "iteration": 0, "tool": "analyze_prefetch", "args": {"path": "sample_data/case01\\prefetch.txt"}, "n_findings": 1, "est_tokens": 36}
+{"ts": "2026-06-14T12:05:35", "event": "tool_call", "iteration": 0, "tool": "parse_evtx_logons", "args": {"path": "sample_data/case01\\evtx_logons.txt"}, "n_findings": 2, "est_tokens": 61}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 0, "finding_id": "amcache:3", "verified": true, "reason": "citation matches raw evidence"}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 0, "finding_id": "amcache:5", "verified": true, "reason": "citation matches raw evidence"}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 0, "finding_id": "mft:2", "verified": true, "reason": "citation matches raw evidence"}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 0, "finding_id": "mft:3", "verified": true, "reason": "citation matches raw evidence"}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 0, "finding_id": "prefetch:2", "verified": true, "reason": "citation matches raw evidence"}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 0, "finding_id": "evtx:7", "verified": true, "reason": "citation matches raw evidence"}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 0, "finding_id": "evtx:bruteforce:203.0.113.45", "verified": true, "reason": "citation matches raw evidence"}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 0, "finding_id": "inferred:exfil", "verified": false, "reason": "no citation: unsupported claim"}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 0, "finding_id": "inferred:ransomware", "verified": false, "reason": "no citation: unsupported claim"}
+{"ts": "2026-06-14T12:05:35", "event": "iteration_summary", "iteration": 0, "reported": 7, "dropped": 2}
+{"ts": "2026-06-14T12:05:35", "event": "tool_call", "iteration": 1, "tool": "list_artifacts", "args": {"case_dir": "sample_data/case01"}, "n_findings": 5, "est_tokens": 98}
+{"ts": "2026-06-14T12:05:35", "event": "tool_call", "iteration": 1, "tool": "get_amcache", "args": {"path": "sample_data/case01\\amcache.txt"}, "n_findings": 2, "est_tokens": 91}
+{"ts": "2026-06-14T12:05:35", "event": "tool_call", "iteration": 1, "tool": "extract_mft_timeline", "args": {"path": "sample_data/case01\\mft.txt"}, "n_findings": 2, "est_tokens": 69}
+{"ts": "2026-06-14T12:05:35", "event": "tool_call", "iteration": 1, "tool": "analyze_prefetch", "args": {"path": "sample_data/case01\\prefetch.txt"}, "n_findings": 1, "est_tokens": 36}
+{"ts": "2026-06-14T12:05:35", "event": "tool_call", "iteration": 1, "tool": "parse_evtx_logons", "args": {"path": "sample_data/case01\\evtx_logons.txt"}, "n_findings": 2, "est_tokens": 61}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 1, "finding_id": "amcache:3", "verified": true, "reason": "citation matches raw evidence"}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 1, "finding_id": "amcache:5", "verified": true, "reason": "citation matches raw evidence"}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 1, "finding_id": "mft:2", "verified": true, "reason": "citation matches raw evidence"}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 1, "finding_id": "mft:3", "verified": true, "reason": "citation matches raw evidence"}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 1, "finding_id": "prefetch:2", "verified": true, "reason": "citation matches raw evidence"}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 1, "finding_id": "evtx:7", "verified": true, "reason": "citation matches raw evidence"}
+{"ts": "2026-06-14T12:05:35", "event": "verification", "iteration": 1, "finding_id": "evtx:bruteforce:203.0.113.45", "verified": true, "reason": "citation matches raw evidence"}
+{"ts": "2026-06-14T12:05:35", "event": "iteration_summary", "iteration": 1, "reported": 7, "dropped": 0}
+{"ts": "2026-06-14T12:05:35", "event": "converged", "iteration": 1}
+{"ts": "2026-06-14T12:05:35", "event": "run_end", "case": "sample_data/case01"}

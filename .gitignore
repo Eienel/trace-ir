@@ -6,6 +6,7 @@ venv/
 sample_data/
 logs/*.jsonl
 !logs/.gitkeep
+!logs/sample_execution_log.jsonl
 .DS_Store
 real_security.evtx
 *.evtx
