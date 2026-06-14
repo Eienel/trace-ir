@@ -46,6 +46,25 @@ or mis-quotes is caught and dropped, and the agent re-runs told exactly which
 claims were rejected. The same architecture and benchmark are used in both the
 deterministic demo and the live run; only the source of the findings changes.
 
+### Live result (real LLM, not scripted)
+
+We ran the live agent on `sample_data/case01` using a local **Ollama `llama3.2:1b`**
+model - small enough to run on a laptop, with no API key and no data leaving the
+machine. The contrast is the whole thesis in one run:
+
+| Mode | Findings reported | Outcome |
+|------|-------------------|---------|
+| **Baseline** (verifier off, Protocol-SIFT-like) | **8** | All 8 pass through as fact - including a `[HIGH] Malicious activity detected on Windows host` finding with **no evidence at all**, plus findings citing line numbers that don't hold the quoted text. |
+| **TRACE** (verifier on) | **0** | All 8 caught: **3 fabricated citations** (the model quoted a real header line but attributed it to the wrong line number - a classic off-by-one a human reviewer would likely miss) and **5 uncited claims** dropped as unsupported. |
+
+Nothing here was scripted: a real model produced real hallucinations, and the
+verifier rejected every one against the raw bytes. Reproduce with:
+
+```
+python -m agent.loop --case sample_data/case01 --live --mode trace --max-iterations 1
+python -m agent.loop --case sample_data/case01 --live --mode baseline --max-iterations 1
+```
+
 ## Challenges we ran into
 
 - **Distinguishing fabrication from judgment.** The verifier should remove made-up
